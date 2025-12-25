@@ -19,11 +19,15 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Coin Setup")]
     public GameObject coinCollector;
 
+    [Header("Animation")]
+    public AnimationManager anim;
+
     [SerializeField]private bool _canRun;
     public bool invencible = false; 
     private Vector3 _pos;
     private float _currentSpeed;
     private Vector3 _startPosition;
+    private float _baseSpeedToAnimation = 7;
 
     private void Start()
     {
@@ -46,7 +50,11 @@ public class PlayerController : Singleton<PlayerController>
     {
         if(collision.collider.tag == tagToCheckEnemy)
         {
-            if(!invencible) EndGame();
+            if(!invencible)
+            {
+                EndGame(AnimationManager.AnimationType.DEAD);
+                MoveBack(collision.transform);
+            }
         }
     }
 
@@ -58,15 +66,22 @@ public class PlayerController : Singleton<PlayerController>
         }
     }
 
-    private void EndGame()
+    public void MoveBack(Transform t)
+    {
+        t.DOMoveZ(1, .3f).SetRelative();
+    }
+
+    private void EndGame(AnimationManager.AnimationType anime = AnimationManager.AnimationType.IDLE)
     {
         _canRun = false;
         endScreen.SetActive(true);
+        anim.Play(anime);
     }
 
     public void StartToRun()
     {
         _canRun = true;
+        anim.Play(AnimationManager.AnimationType.RUN, _currentSpeed / _baseSpeedToAnimation);
     }
 
     #region PowerUps
