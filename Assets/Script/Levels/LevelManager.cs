@@ -17,6 +17,21 @@ public class LevelManager : Singleton<LevelManager>
     private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
     private LevelPieceBaseSetup _currentSetup;
 
+    private void Awake()
+    {
+        CreateLevelPieces();
+    }
+
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            CreateLevelPieces();
+        }
+    }
+
+
+    #region Métodos do Manager
     private void ResetLevelIndex()
     {
         _index = 0;
@@ -44,7 +59,7 @@ public class LevelManager : Singleton<LevelManager>
             CreateLevelPiece(_currentSetup.endPieces);
         }
 
-
+        ColorManager.Instance.ChangeColorByType(_currentSetup.artType);
 
     }
 
@@ -56,7 +71,7 @@ public class LevelManager : Singleton<LevelManager>
         if(_spawnedPieces.Count > 0)
         {
             var lastPiece = _spawnedPieces[_spawnedPieces.Count - 1];
-            spawnedPieces.transform.localPosition = lastPiece.endPiece.position;
+            spawnedPieces.transform.position = lastPiece.endPiece.position;
         }
 
         else
@@ -64,7 +79,10 @@ public class LevelManager : Singleton<LevelManager>
             spawnedPieces.transform.localPosition = Vector3.zero;
         }
 
-        //foreach(var p in spawnedPieces.GetComponentsInChildren)
+        foreach(var p in spawnedPieces.GetComponentsInChildren<ArtPiece>())
+        {
+            p.ChangePiece(ArtManager.Instance.GetSetupByType(_currentSetup.artType).gameObject);
+        }
 
         _spawnedPieces.Add(spawnedPieces);
     }
@@ -79,5 +97,5 @@ public class LevelManager : Singleton<LevelManager>
         }
         _spawnedPieces.Clear();
     }
-
+    #endregion
 }
