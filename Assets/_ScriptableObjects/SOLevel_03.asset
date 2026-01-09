@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddbd9161965cf8e479c96a966c401778, type: 3}
-  m_Name: SOLevel_02
+  m_Name: SOLevel_03
   m_EditorClassIdentifier: 
-  artType: 1
+  artType: 2
   startPieces:
   - {fileID: 936833146917323961, guid: e5f6a81873566fe489d542e926f57550, type: 3}
   pieces:
@@ -22,5 +22,5 @@ MonoBehaviour:
   endPieces:
   - {fileID: 936833146917323961, guid: 85e479efb78910144aadc1fac3ccf35f, type: 3}
   piecesStartNumber: 1
-  piecesNumber: 10
+  piecesNumber: 25
   piecesEndNumber: 1
