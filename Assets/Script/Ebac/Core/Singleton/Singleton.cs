@@ -7,7 +7,7 @@ namespace Ebac.Core.singleton
 
         public static T Instance;
 
-        public void Awake()
+        protected virtual void Awake()
         {
             if (Instance == null)
                 Instance = GetComponent<T>();

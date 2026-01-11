@@ -22,5 +22,5 @@ MonoBehaviour:
   endPieces:
   - {fileID: 936833146917323961, guid: 85e479efb78910144aadc1fac3ccf35f, type: 3}
   piecesStartNumber: 1
-  piecesNumber: 25
+  piecesNumber: 5
   piecesEndNumber: 1

@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class ArtManager : Singleton<ArtManager>
 {
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     public enum ArtType
     {
         TYPE_01,

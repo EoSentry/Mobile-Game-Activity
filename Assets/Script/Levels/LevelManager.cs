@@ -17,10 +17,12 @@ public class LevelManager : Singleton<LevelManager>
     private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
     private LevelPieceBaseSetup _currentSetup;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         CreateLevelPieces();
     }
+
 
     public void Update()
     {
@@ -65,6 +67,12 @@ public class LevelManager : Singleton<LevelManager>
 
     private void CreateLevelPiece(List<LevelPieceBase> list)
     {
+        if (list == null || list.Count == 0)
+        {
+            Debug.LogError("LISTA NULA OU VAZIA");
+            return;
+        }
+
         var pieces = list[Random.Range(0, list.Count)];
         var spawnedPieces = Instantiate(pieces, container);
 

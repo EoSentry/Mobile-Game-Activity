@@ -7,6 +7,11 @@ public class ColorManager : Singleton<ColorManager>
     public List<Material> materials;
     public List<ColorStup> colorStups;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     public void ChangeColorByType(ArtManager.ArtType artType)
     {
         var setup = colorStups.Find(i => i.artType == artType);
