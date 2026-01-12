@@ -21,6 +21,6 @@ MonoBehaviour:
   - {fileID: 141920216144132690, guid: ae93c4634657c01458bc4f656a0d9d02, type: 3}
   endPieces:
   - {fileID: 936833146917323961, guid: 85e479efb78910144aadc1fac3ccf35f, type: 3}
-  piecesStartNumber: 1
+  piecesStartNumber: 2
   piecesNumber: 5
   piecesEndNumber: 1

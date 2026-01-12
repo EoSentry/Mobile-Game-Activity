@@ -1,7 +1,8 @@
+using Ebac.Core.singleton;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-using Ebac.Core.singleton;
+using static UnityEngine.Rendering.DebugUI;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -10,6 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     public List<LevelPieceBaseSetup> levelPieceBaseSetups;
 
     public float timeBetweenPieces = .3f;
+    
 
     [SerializeField]private int _index;
     private GameObject _currtLevel;
@@ -17,12 +19,16 @@ public class LevelManager : Singleton<LevelManager>
     private List<LevelPieceBase> _spawnedPieces = new List<LevelPieceBase>();
     private LevelPieceBaseSetup _currentSetup;
 
-    protected override void Awake()
+    /* protected override void Awake()
+     {
+         base.Awake();
+         CreateLevelPieces();
+     }*/
+
+    public void Start()
     {
-        base.Awake();
         CreateLevelPieces();
     }
-
 
     public void Update()
     {
@@ -50,6 +56,12 @@ public class LevelManager : Singleton<LevelManager>
                 ResetLevelIndex();
         }
         _currentSetup = levelPieceBaseSetups[_index];
+
+         for(int i = 0; i < _currentSetup.piecesStartNumber; i++)
+        {
+            CreateLevelPiece(_currentSetup.startPieces);
+        }
+
 
         for(int i = 0; i < _currentSetup.piecesNumber; i++)
         {
