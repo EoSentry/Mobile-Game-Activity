@@ -12,3 +12,5 @@ public class ArtPiece : MonoBehaviour
         currentArt.transform.localPosition = Vector3.zero;
     }
 }
+
+//

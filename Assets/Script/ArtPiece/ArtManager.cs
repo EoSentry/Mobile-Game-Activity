@@ -31,3 +31,4 @@ public class ArtSetup
     public ArtManager.ArtType artType;
     public GameObject gameObject;
 }
+//

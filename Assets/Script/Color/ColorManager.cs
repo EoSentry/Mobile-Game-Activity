@@ -31,3 +31,4 @@ public class ColorStup
     public ArtManager.ArtType artType;
     public List<Color> colors;    
 }
+//
