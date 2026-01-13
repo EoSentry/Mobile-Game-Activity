@@ -6,6 +6,7 @@ public class ItemCollactableBase : MonoBehaviour
     public ParticleSystem particleSystem;
     public float timeToHide = 3;
     public GameObject graphicItem;
+    public PlayerScale playerScale;
 
     [Header("Sounds")]
     public AudioSource audioSource;
@@ -13,6 +14,15 @@ public class ItemCollactableBase : MonoBehaviour
     private void Awake()
     {
         //if (particleSystem != null) particleSystem.transform.SetParent(null);
+        if(playerScale == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag(compareTag);
+
+            if(player != null)
+            {
+                playerScale = player.GetComponent<PlayerScale>();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -30,6 +40,7 @@ public class ItemCollactableBase : MonoBehaviour
         if (graphicItem != null) graphicItem.SetActive(false);
         Invoke("HideObject", timeToHide);
         OnCollect();
+        playerScale.PlayerScaleOnCollect();
     }
 
     private void HideObject()
